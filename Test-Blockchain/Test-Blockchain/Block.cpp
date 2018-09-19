@@ -11,7 +11,10 @@ Block::Block(uint32_t nIndexIn, const string &sDataIn) : _nIndex(nIndexIn), _sDa
 }
 
 string Block::GetHash() {
-	return(_sHash);
+	if (_sHash.length() == 0) {
+		_CalculateHash();
+	}
+		return(_sHash);
 }
 
 void Block::MineBlock(uint32_t nDifficulty) {
@@ -32,10 +35,33 @@ void Block::MineBlock(uint32_t nDifficulty) {
 	cout << "Block mined: " << _sHash << endl;
 }
 
-inline string Block::_CalculateHash() const {
+bool Block::VerifyBlock()
+{
+
+	if (_sHash == _CalculateHash()) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+void Block::SetHash()
+{
+	_sHash = _CalculateHash();
+}
+
+string Block::_CalculateHash() {
 	strstream SS;
+	
+	if (_tTime) {} else{
+	time_t timer;
+	time(&timer);
+	_tTime = timer;
+}
 	SS << _nIndex << _tTime << _sData << _nNonce << sPrevHash;
 
 	return sha256(SS.str());
 
 }
+

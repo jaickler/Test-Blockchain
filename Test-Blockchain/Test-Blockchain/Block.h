@@ -18,6 +18,11 @@ public:
 
 	void MineBlock(uint32_t nDifficulty);
 
+	bool VerifyBlock();
+
+	//Sets the hash in case of first block.
+	void SetHash();
+
 private:
 
 	uint16_t _nIndex;
@@ -26,5 +31,5 @@ private:
 	string _sHash;
 	time_t _tTime;
 
-	string _CalculateHash() const;
+	string _CalculateHash();
 };

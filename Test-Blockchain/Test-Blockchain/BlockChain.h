@@ -11,10 +11,12 @@ public:
 
 	void AddBlock(Block New);
 
+	bool VerifyChain();
+
 private:
 
 	uint32_t _nDifficulty;
 	vector<Block> _vChain;
 
-	Block _GetLastBlock() const;
+	Block _GetLastBlock();
 };
