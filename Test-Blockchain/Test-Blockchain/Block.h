@@ -12,6 +12,7 @@ public:
 
 	string sPrevHash;
 
+	// Defines the constructor for the block class.
 	Block(uint32_t nIndexIn, const string &sDataIn);
 
 	string GetHash();
@@ -20,8 +21,8 @@ public:
 
 	bool VerifyBlock();
 
-	//Sets the hash in case of first block.
-	void SetHash();
+	//Sets the hash in case of first block.  --Do Not use besides at Genesis Block.
+	void SetHashOrigin();
 
 private:
 

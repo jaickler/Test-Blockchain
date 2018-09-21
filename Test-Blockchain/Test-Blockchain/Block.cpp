@@ -4,19 +4,21 @@
 #include <strstream>
 #include <vector>
 
+// Creates the object that will be used to run the sha256 hashing algorithm.
 SHA256 sha256;
+
+//Constructor for the block class.
 Block::Block(uint32_t nIndexIn, const string &sDataIn) : _nIndex(nIndexIn), _sData(sDataIn) {
 	_nNonce = -1;
 	_tTime = time(nullptr);
 }
 
+//Returns the block's hash.
 string Block::GetHash() {
-	if (_sHash.length() == 0) {
-		_CalculateHash();
-	}
 		return(_sHash);
 }
 
+//Finds a valid hash for the current block.
 void Block::MineBlock(uint32_t nDifficulty) {
 	char *cstr;
 	cstr = new char [nDifficulty + 1];
@@ -35,6 +37,7 @@ void Block::MineBlock(uint32_t nDifficulty) {
 	cout << "Block mined: " << _sHash << endl;
 }
 
+//Verifies the validity of the owner block.
 bool Block::VerifyBlock()
 {
 
@@ -46,11 +49,13 @@ bool Block::VerifyBlock()
 
 }
 
-void Block::SetHash()
+//Sets the hash of the origin block.
+void Block::SetHashOrigin()
 {
 	_sHash = _CalculateHash();
 }
 
+//Calculates and returns the hash of the block based on current information.
 string Block::_CalculateHash() {
 	strstream SS;
 	
