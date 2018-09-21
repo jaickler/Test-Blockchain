@@ -20,6 +20,7 @@ public:
 private:
 	void _VerifyChain(BlockChain &bChain);
 	void _MineBlock(BlockChain &bChain);
+	void _DisplayChain(BlockChain &bChain);
 	string _sGetUserInput();
 	int _iMenu;
 	int _LastSelection;

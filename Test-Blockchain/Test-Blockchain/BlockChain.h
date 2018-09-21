@@ -20,6 +20,8 @@ public:
 	
 	uint32_t GetChainLength();
 
+	Block GetBlock(uint32_t index);
+
 private:
 
 	uint32_t _nDifficulty;

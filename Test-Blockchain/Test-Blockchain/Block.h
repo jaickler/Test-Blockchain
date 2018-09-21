@@ -24,6 +24,8 @@ public:
 	//Sets the hash in case of first block.  --Do Not use besides at Genesis Block.
 	void SetHashOrigin();
 
+	string GetBlockData();
+
 private:
 
 	uint16_t _nIndex;

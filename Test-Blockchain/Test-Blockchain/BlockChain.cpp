@@ -56,6 +56,11 @@ uint32_t BlockChain::GetChainLength()
 	return uint32_t(_vChain.size());
 }
 
+Block BlockChain::GetBlock(uint32_t index)
+{
+	return _vChain[index];
+}
+
 //Returns the last block in the blockchain.
 Block BlockChain::_GetLastBlock() {
 	return(_vChain.back());

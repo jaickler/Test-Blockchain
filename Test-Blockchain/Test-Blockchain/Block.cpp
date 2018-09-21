@@ -55,6 +55,11 @@ void Block::SetHashOrigin()
 	_sHash = _CalculateHash();
 }
 
+string Block::GetBlockData()
+{
+	return _sData;
+}
+
 //Calculates and returns the hash of the block based on current information.
 string Block::_CalculateHash() {
 	strstream SS;

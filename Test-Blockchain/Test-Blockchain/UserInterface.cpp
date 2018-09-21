@@ -13,9 +13,10 @@ void UserInterface::DisplayMenu(int menu)
 {
 	switch (menu)
 	{
-	case 1: cout << endl << endl << "Main Menu" << endl;
+	case 1: cout << endl << endl << "-----------------------------------------------" << endl << "Main Menu" << endl;
 		cout << 1 << " - Mine Block" << endl;
 		cout << 2 << " - Verify BlockChain" << endl;
+		cout << 3 << " - View BlockChain Data" << endl;
 		cout << 0 << " - Exit" << endl;
 		cout << endl << "Please enter your selection: ";
 		break;
@@ -46,7 +47,7 @@ int UserInterface::GetUserSelection()
 		return ExtractedNum;
 	}
 	else {
-		cout << endl << "Input not valid. Please try again: ";
+		cout << endl << "-----------------------------------------------" << endl << "Input not valid. Please try again: ";
 	}
 }
 	
@@ -60,6 +61,7 @@ void UserInterface::ExecuteCommand(BlockChain &bChain)
 		case 1: switch (Selection) {
 		case 1: _MineBlock(bChain); break;
 		case 2: _VerifyChain(bChain); break;
+		case 3: _DisplayChain(bChain); break;
 		} break;
 		}
 	}
@@ -71,19 +73,29 @@ void UserInterface::ExecuteCommand(BlockChain &bChain)
 void UserInterface::_VerifyChain(BlockChain &bChain)
 {
 	if (bChain.VerifyChain()) {
-		cout << endl << endl << "BlockChain Valid" << endl;
+		cout << endl << endl << "-----------------------------------------------" << endl << "BlockChain Valid" << endl;
 	}
 	else {
-		cout << endl << endl << "Blockchain not valid." << endl;
+		cout << endl << endl << "-----------------------------------------------" << endl << "Blockchain not valid." << endl;
 	}
 }
 
 void UserInterface::_MineBlock(BlockChain &bChain)
 {
-	cout << endl << "Please input block data: ";
+	cout << endl << "-----------------------------------------------" << endl << "Please input block data: ";
 	Block bNew(bChain.GetChainLength(), _sGetUserInput());
 	bChain.AddBlock(bNew);
 	
+}
+
+void UserInterface::_DisplayChain(BlockChain &bChain)
+{
+	cout << endl << endl << "-----------------------------------------------" << endl;
+	for (uint32_t i = 0; i < bChain.GetChainLength(); i++) {
+		cout << "Block Index: " << i << endl;
+		cout << "Block Data: " << bChain.GetBlock(i).GetBlockData() << endl;
+		cout << "Block Hash: " << bChain.GetBlock(i).GetHash() << endl << endl;
+	}
 }
 
 string UserInterface::_sGetUserInput()
